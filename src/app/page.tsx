@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Clock, CheckCircle, Users, Zap, ArrowRight } from "lucide-react";
+import { CompanyLogo } from "@/components/CompanyLogo";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 
 export const revalidate = 3600;
@@ -111,23 +111,7 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {companies.map((company) => (
               <div key={company.name} className="flex items-center justify-center h-8">
-                <Image
-                  src={`https://logo.clearbit.com/${company.domain}`}
-                  alt={company.name}
-                  width={120}
-                  height={32}
-                  className="h-8 w-auto object-contain grayscale opacity-60"
-                  unoptimized
-                  onError={(e) => {
-                    const img = e.currentTarget;
-                    img.style.display = "none";
-                    const fallback = img.nextElementSibling as HTMLElement | null;
-                    if (fallback) fallback.style.display = "block";
-                  }}
-                />
-                <span className="hidden text-stone text-sm font-medium">
-                  {company.name}
-                </span>
+                <CompanyLogo name={company.name} domain={company.domain} />
               </div>
             ))}
           </div>
