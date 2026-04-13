@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Clock, CheckCircle, Users, Zap, ArrowRight } from "lucide-react";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 
@@ -57,11 +56,11 @@ const featuredProjects = [
 ];
 
 const companies = [
-  { name: "Boeing", domain: "boeing.com" },
-  { name: "T-Mobile", domain: "t-mobile.com" },
-  { name: "TD Bank", domain: "td.com" },
-  { name: "Microsoft", domain: "microsoft.com" },
-  { name: "University of Washington", domain: "washington.edu" },
+  "Boeing",
+  "T-Mobile",
+  "TD Bank",
+  "Microsoft",
+  "University of Washington",
 ];
 
 export default async function HomePage() {
@@ -70,7 +69,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 py-24 md:py-32">
+      <section className="bg-sand px-6 pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="font-display text-4xl md:text-6xl font-bold text-navy leading-tight mb-6">
             I help teams move faster with fewer dropped balls.
@@ -108,21 +107,14 @@ export default async function HomePage() {
           <p className="text-stone text-xs uppercase tracking-widest text-center mb-8">
             Experience across
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
+          <div className="flex flex-wrap items-center justify-center gap-3">
             {companies.map((company) => (
-              <div
-                key={company.name}
-                className="flex items-center justify-center h-8"
+              <span
+                key={company}
+                className="border border-pebble text-stone text-sm font-medium px-4 py-2 rounded-full"
               >
-                <Image
-                  src={`https://logo.clearbit.com/${company.domain}`}
-                  alt={company.name}
-                  width={120}
-                  height={32}
-                  className="h-8 w-auto object-contain grayscale opacity-60"
-                  unoptimized
-                />
-              </div>
+                {company}
+              </span>
             ))}
           </div>
         </div>
