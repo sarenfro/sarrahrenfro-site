@@ -57,11 +57,10 @@ const featuredProjects = [
 ];
 
 const companies = [
-  { name: "Boeing", domain: "boeing.com" },
-  { name: "T-Mobile", domain: "t-mobile.com" },
-  { name: "TD Bank", domain: "td.com" },
-  { name: "Microsoft", domain: "microsoft.com" },
-  { name: "University of Washington", domain: "washington.edu" },
+  { name: "Boeing", slug: "boeing" },
+  { name: "T-Mobile", slug: "tmobile" },
+  { name: "TD Bank", slug: "tdbank" },
+  { name: "Microsoft", slug: "microsoft" },
 ];
 
 export default async function HomePage() {
@@ -111,7 +110,7 @@ export default async function HomePage() {
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {companies.map((company) => (
               <div key={company.name} className="flex items-center justify-center h-8">
-                <CompanyLogo name={company.name} domain={company.domain} />
+                <CompanyLogo name={company.name} slug={company.slug} />
               </div>
             ))}
           </div>
