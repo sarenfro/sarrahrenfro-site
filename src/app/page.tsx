@@ -109,7 +109,7 @@ export default async function HomePage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {companies.map((company) => (
-              <div key={company.name} className="flex items-center justify-center h-8">
+              <div key={company.name} className="flex items-center justify-center h-12">
                 <CompanyLogo name={company.name} slug={company.slug} />
               </div>
             ))}
