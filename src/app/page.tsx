@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, CheckCircle, Users, Zap, ArrowRight } from "lucide-react";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 
@@ -56,11 +57,11 @@ const featuredProjects = [
 ];
 
 const companies = [
-  "Boeing",
-  "T-Mobile",
-  "TD Bank",
-  "Microsoft",
-  "University of Washington",
+  { name: "Boeing", domain: "boeing.com" },
+  { name: "T-Mobile", domain: "t-mobile.com" },
+  { name: "TD Bank", domain: "td.com" },
+  { name: "Microsoft", domain: "microsoft.com" },
+  { name: "University of Washington", domain: "washington.edu" },
 ];
 
 export default async function HomePage() {
@@ -107,14 +108,27 @@ export default async function HomePage() {
           <p className="text-stone text-xs uppercase tracking-widest text-center mb-8">
             Experience across
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
             {companies.map((company) => (
-              <span
-                key={company}
-                className="border border-pebble text-stone text-sm font-medium px-4 py-2 rounded-full"
-              >
-                {company}
-              </span>
+              <div key={company.name} className="flex items-center justify-center h-8">
+                <Image
+                  src={`https://logo.clearbit.com/${company.domain}`}
+                  alt={company.name}
+                  width={120}
+                  height={32}
+                  className="h-8 w-auto object-contain grayscale opacity-60"
+                  unoptimized
+                  onError={(e) => {
+                    const img = e.currentTarget;
+                    img.style.display = "none";
+                    const fallback = img.nextElementSibling as HTMLElement | null;
+                    if (fallback) fallback.style.display = "block";
+                  }}
+                />
+                <span className="hidden text-stone text-sm font-medium">
+                  {company.name}
+                </span>
+              </div>
             ))}
           </div>
         </div>
