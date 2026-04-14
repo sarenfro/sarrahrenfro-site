@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
@@ -13,9 +13,25 @@ const navLinks = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    function onScroll() {
+      const scrolled = window.scrollY;
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(total > 0 ? (scrolled / total) * 100 : 0);
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ backgroundColor: "rgba(11, 18, 24, 0.9)", borderColor: "var(--border-subtle)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
+    <header className="sticky top-0 z-50 border-b relative" style={{ backgroundColor: "rgba(11, 18, 24, 0.9)", borderColor: "var(--border-subtle)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
+      {/* Scroll progress bar */}
+      <div
+        className="absolute bottom-0 left-0 h-[2px] transition-all duration-75"
+        style={{ width: `${progress}%`, backgroundColor: "var(--accent)" }}
+      />
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"

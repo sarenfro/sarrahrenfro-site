@@ -1,13 +1,23 @@
 import Parser from "rss-parser";
 
+type CustomItem = {
+  enclosure?: { url?: string };
+  "media:thumbnail"?: { $?: { url?: string } };
+};
+
 export interface Post {
   title: string;
   pubDate: string;
   contentSnippet: string;
   link: string;
+  image?: string;
 }
 
-const parser = new Parser();
+const parser = new Parser<Record<string, unknown>, CustomItem>({
+  customFields: {
+    item: [["enclosure", "enclosure"], ["media:thumbnail", "media:thumbnail"]],
+  },
+});
 
 export async function getSubstackPosts(count = 6): Promise<Post[] | null> {
   try {
@@ -19,6 +29,7 @@ export async function getSubstackPosts(count = 6): Promise<Post[] | null> {
       pubDate: item.pubDate ?? "",
       contentSnippet: item.contentSnippet ?? "",
       link: item.link ?? "https://sarrahsandbox.substack.com",
+      image: item.enclosure?.url ?? item["media:thumbnail"]?.$?.url,
     }));
   } catch {
     return null;

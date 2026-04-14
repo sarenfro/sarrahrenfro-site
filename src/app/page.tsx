@@ -1,7 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import { CompanyLogo } from "@/components/CompanyLogo";
 import WhatWorkingWithMe from "@/components/WhatWorkingWithMe";
+import LogoMarquee from "@/components/LogoMarquee";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 
 export const revalidate = 3600;
@@ -31,12 +32,6 @@ const featuredProjects = [
   },
 ];
 
-const companies = [
-  { name: "Boeing", slug: "boeing" },
-  { name: "T-Mobile", slug: "tmobile" },
-  { name: "TD Bank", slug: "tdbank" },
-  { name: "Microsoft", slug: "microsoft" },
-];
 
 export default async function HomePage() {
   const posts = await getSubstackPosts(3);
@@ -46,19 +41,29 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="bg-ink px-6 pt-24 pb-16 md:pt-28 md:pb-20">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-eyebrow mb-4">
+          <div className="animate-fade-up flex justify-center mb-6">
+            <Image
+              src="/sarrah.png"
+              alt="Sarrah Renfro"
+              width={88}
+              height={88}
+              className="rounded-full object-cover object-top"
+              style={{ border: "2px solid var(--border)" }}
+              priority
+            />
+          </div>
+          <p className="text-eyebrow mb-4 animate-fade-up delay-100">
             Product Manager &nbsp;&middot;&nbsp; Chief of Staff &nbsp;&middot;&nbsp; Strategic Operator
           </p>
-          <h1 className="text-hero mb-5" style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}>
+          <h1 className="text-hero mb-5 animate-fade-up delay-200" style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}>
             I help teams move faster with fewer dropped balls.
           </h1>
-          <p className="text-base max-w-xl mx-auto mb-3 leading-relaxed" style={{ color: "var(--color-slate-muted)" }}>
+          <p className="text-base max-w-xl mx-auto mb-8 leading-relaxed animate-fade-up delay-300" style={{ color: "var(--color-slate-muted)" }}>
             Whether you&apos;re a scrappy startup trying to build leverage or an
             established team navigating a complex initiative, I bring strategic
             clarity and operational follow-through to the work that matters most.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-up delay-400">
             <Link href="/contact" className="btn-primary">
               Let&apos;s Talk &rarr;
             </Link>
@@ -70,19 +75,11 @@ export default async function HomePage() {
       </section>
 
       {/* LOGO BAR */}
-      <section className="bg-cream border-y border-pebble px-6 py-10">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-stone text-xs uppercase tracking-widest text-center mb-8">
-            Experience across
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-16">
-            {companies.map((company) => (
-              <div key={company.name} className="flex items-center justify-center h-12">
-                <CompanyLogo name={company.name} slug={company.slug} />
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="bg-cream border-y border-pebble py-10">
+        <p className="text-stone text-xs uppercase tracking-widest text-center mb-8">
+          Experience across
+        </p>
+        <LogoMarquee />
       </section>
 
       {/* OUTCOMES */}

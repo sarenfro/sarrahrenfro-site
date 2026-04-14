@@ -1,4 +1,5 @@
 import { Clock, CheckCircle, Users, Zap } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const cards = [
   {
@@ -35,9 +36,9 @@ export default function WhatWorkingWithMe() {
 
         {/* Card grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {cards.map(({ icon: Icon, title, body }) => (
+          {cards.map(({ icon: Icon, title, body }, i) => (
+            <ScrollReveal key={title} delay={i * 100}>
             <div
-              key={title}
               className="
                 bg-[#1E2D45]
                 border border-[#334D6E]/40
@@ -65,6 +66,7 @@ export default function WhatWorkingWithMe() {
                 {body}
               </p>
             </div>
+            </ScrollReveal>
           ))}
         </div>
 

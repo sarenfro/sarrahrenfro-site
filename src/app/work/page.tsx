@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -15,6 +16,7 @@ interface Project {
   tags: string[];
   link?: string;
   linkLabel?: string;
+  screenshot?: string;
   placeholder?: boolean;
 }
 
@@ -27,6 +29,7 @@ const projects: Project[] = [
     tags: ["Product", "Web App", "Live"],
     link: "https://powroi.lovable.app",
     linkLabel: "View Live App",
+    screenshot: "/screenshots/powroi.png",
   },
   {
     name: "Quizzler",
@@ -106,8 +109,19 @@ export default function WorkPage() {
             return (
               <div
                 key={project.name}
-                className="bg-cream border border-pebble rounded-2xl p-8"
+                className="bg-cream border border-pebble rounded-2xl overflow-hidden"
               >
+                {project.screenshot ? (
+                  <div className="relative w-full h-52">
+                    <Image
+                      src={project.screenshot}
+                      alt={`${project.name} screenshot`}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  </div>
+                ) : null}
+                <div className="p-8">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
                     <span
@@ -142,6 +156,7 @@ export default function WorkPage() {
                     <ExternalLink size={14} />
                   </a>
                 )}
+                </div>
               </div>
             );
           })}

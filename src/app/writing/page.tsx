@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 import type { Metadata } from "next";
@@ -40,20 +41,33 @@ export default async function WritingPage() {
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-cream border border-pebble rounded-2xl p-7 hover:border-terracotta transition-colors group flex flex-col"
+                  className="bg-cream border border-pebble rounded-2xl overflow-hidden hover:border-terracotta transition-colors group flex flex-col"
                 >
-                  <p className="text-stone text-xs mb-3">
-                    {formatDate(post.pubDate)}
-                  </p>
-                  <h2 className="font-display text-xl font-bold text-navy mb-3 group-hover:text-terracotta transition-colors leading-snug">
-                    {post.title}
-                  </h2>
-                  <p className="text-charcoal text-sm leading-relaxed flex-1 mb-5">
-                    {truncate(post.contentSnippet)}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-terracotta text-sm font-medium">
-                    Read <ArrowUpRight size={14} />
-                  </span>
+                  {post.image && (
+                    <div className="relative w-full h-44 shrink-0">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  )}
+                  <div className="p-7 flex flex-col flex-1">
+                    <p className="text-stone text-xs mb-3">
+                      {formatDate(post.pubDate)}
+                    </p>
+                    <h2 className="font-display text-xl font-bold text-navy mb-3 group-hover:text-terracotta transition-colors leading-snug">
+                      {post.title}
+                    </h2>
+                    <p className="text-charcoal text-sm leading-relaxed flex-1 mb-5">
+                      {truncate(post.contentSnippet)}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-terracotta text-sm font-medium">
+                      Read <ArrowUpRight size={14} />
+                    </span>
+                  </div>
                 </a>
               ))}
             </div>
