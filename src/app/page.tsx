@@ -44,24 +44,24 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-ink px-6 pt-28 pb-20 md:pt-36 md:pb-24">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-eyebrow mb-5">
+      <section className="bg-ink px-6 pt-24 pb-16 md:pt-28 md:pb-20">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-eyebrow mb-4">
             Product Manager &nbsp;&middot;&nbsp; Chief of Staff &nbsp;&middot;&nbsp; Strategic Operator
           </p>
-          <h1 className="text-hero mb-6">
-            I help teams move faster<br className="hidden sm:block" /> with fewer dropped balls.
+          <h1 className="text-hero mb-5" style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}>
+            I help teams move faster with fewer dropped balls.
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--color-slate-muted)" }}>
+          <p className="text-base max-w-xl mx-auto mb-3 leading-relaxed" style={{ color: "var(--color-slate-muted)" }}>
             Whether you&apos;re a scrappy startup trying to build leverage or an
             established team navigating a complex initiative, I bring strategic
             clarity and operational follow-through to the work that matters most.
           </p>
-          <p className="text-sm mb-10" style={{ color: "var(--color-slate-subtle)" }}>
+          <p className="text-sm mb-8" style={{ color: "var(--color-slate-subtle)" }}>
             MBA candidate at UW Foster &nbsp;&middot;&nbsp; PM and Chief of Staff
             recruiting for 2026 &nbsp;&middot;&nbsp; Seattle-based
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/contact" className="btn-primary">
               Let&apos;s Talk &rarr;
             </Link>
