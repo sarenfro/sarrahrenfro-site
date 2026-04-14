@@ -57,10 +57,7 @@ export default async function HomePage() {
             established team navigating a complex initiative, I bring strategic
             clarity and operational follow-through to the work that matters most.
           </p>
-          <p className="text-sm mb-8" style={{ color: "var(--color-slate-subtle)" }}>
-            MBA candidate at UW Foster &nbsp;&middot;&nbsp; PM and Chief of Staff
-            recruiting for 2026 &nbsp;&middot;&nbsp; Seattle-based
-          </p>
+
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link href="/contact" className="btn-primary">
               Let&apos;s Talk &rarr;
