@@ -17,12 +17,12 @@ export default async function WritingPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 py-20 md:py-28">
+      <section className="bg-ink px-6 py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-navy mb-4 leading-tight">
+          <h1 className="text-hero mb-4">
             Sarrah&apos;s Sandbox
           </h1>
-          <p className="text-charcoal text-lg max-w-xl">
+          <p className="text-lg max-w-xl" style={{ color: "var(--text-secondary)" }}>
             AI and technology, explained for people who think differently about
             it. No jargon, no gatekeeping.
           </p>

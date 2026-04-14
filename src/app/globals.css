@@ -10,16 +10,16 @@
 /* ── Tailwind v4 design tokens ──────────────────────────────── */
 /* Generates bg-*, text-*, border-*, etc. utility classes       */
 @theme {
-  /* Warm palette (preserved for existing pages) */
-  --color-sand:           #F8F5F1;
-  --color-navy:           #1C2B3A;
-  --color-charcoal:       #3D3530;
-  --color-stone:          #9B8F87;
-  --color-terracotta:     #C4714B;
-  --color-terracotta-dark:#A85D39;
+  /* Base palette */
+  --color-sand:           #F0F4FA;
+  --color-navy:           #0F172A;
+  --color-charcoal:       #1E293B;
+  --color-stone:          #64748B;
+  --color-terracotta:     #4D9EFF;
+  --color-terracotta-dark:#6AAEFF;
   --color-cream:          #FFFFFF;
-  --color-pebble:         #E8E0D8;
-  --color-light:          #F2EDE8;
+  --color-pebble:         #CBD5E1;
+  --color-light:          #E8EEF6;
 
   /* Steel + Electric Blue palette */
   --color-ink:            #07090F;
@@ -92,7 +92,7 @@
 @layer base {
   html {
     background-color: var(--color-sand);
-    color: var(--color-charcoal);
+    color: var(--color-navy);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: 17px;
     -webkit-font-smoothing: antialiased;

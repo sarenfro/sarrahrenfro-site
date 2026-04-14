@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, GraduationCap, Award, Code, Briefcase } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -39,20 +40,34 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 py-20 md:py-28">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-navy mb-8 leading-tight">
-            Why Sarrah, specifically?
-          </h1>
-          <p className="text-charcoal text-lg leading-relaxed max-w-2xl">
-            I&apos;m a product strategist and operator with roots in computer
-            engineering and five-plus years of cross-functional experience at
-            Boeing, T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA
-            candidate at UW Foster (Class of 2027), concentrating in Product
-            Management. My superpower is operating at the intersection of
-            technical and strategic: I can read a system diagram and a market
-            map in the same afternoon, and I know which one to act on first.
-          </p>
+      <section className="bg-ink px-6 py-20 md:py-28">
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          {/* Text */}
+          <div className="flex-1">
+            <h1 className="text-hero mb-8">
+              Why Sarrah, specifically?
+            </h1>
+            <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
+              I&apos;m a product strategist and operator with roots in computer
+              engineering and five-plus years of cross-functional experience at
+              Boeing, T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA
+              candidate at UW Foster (Class of 2027), concentrating in Product
+              Management. My superpower is operating at the intersection of
+              technical and strategic: I can read a system diagram and a market
+              map in the same afternoon, and I know which one to act on first.
+            </p>
+          </div>
+          {/* Photo */}
+          <div className="shrink-0">
+            <Image
+              src="/sarrah.png"
+              alt="Sarrah Renfro"
+              width={280}
+              height={340}
+              className="rounded-2xl object-cover object-top"
+              priority
+            />
+          </div>
         </div>
       </section>
 

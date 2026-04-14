@@ -53,12 +53,12 @@ export default function ContactPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 py-20 md:py-28">
+      <section className="bg-ink px-6 py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-navy mb-4 leading-tight">
+          <h1 className="text-hero mb-4">
             Let&apos;s talk.
           </h1>
-          <p className="text-charcoal text-lg">
+          <p className="text-lg" style={{ color: "var(--text-secondary)" }}>
             Tell me what you&apos;re working on.
           </p>
         </div>

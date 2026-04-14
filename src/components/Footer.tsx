@@ -11,11 +11,11 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-cream/80">
+    <footer style={{ backgroundColor: "var(--bg-base)", borderTop: "1px solid var(--border-subtle)" }}>
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex flex-col items-center md:items-start gap-1">
-          <span className="font-display font-bold text-cream text-sm">Sarrah Renfro</span>
-          <span className="text-cream/50 text-xs">
+          <span className="font-display font-bold text-sm" style={{ color: "var(--text-primary)" }}>Sarrah Renfro</span>
+          <span className="text-xs" style={{ color: "var(--text-tertiary)" }}>
             &copy; {new Date().getFullYear()} All rights reserved.
           </span>
         </div>
@@ -25,7 +25,8 @@ export default function Footer() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-cream/60 hover:text-cream text-xs transition-colors"
+              className="text-xs transition-colors"
+              style={{ color: "var(--text-secondary)" }}
             >
               {link.label}
             </Link>
@@ -38,7 +39,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="text-cream/60 hover:text-cream transition-colors"
+            className="transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             <LinkedinIcon size={18} />
           </a>
@@ -47,7 +49,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
-            className="text-cream/60 hover:text-cream transition-colors"
+            className="transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             <GithubIcon size={18} />
           </a>
@@ -56,7 +59,8 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Substack"
-            className="text-cream/60 hover:text-cream transition-colors text-xs font-medium"
+            className="text-xs font-medium transition-colors"
+            style={{ color: "var(--text-secondary)" }}
           >
             Substack
           </a>

@@ -66,12 +66,12 @@ export default function WorkPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 py-20 md:py-28">
+      <section className="bg-ink px-6 py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
-          <h1 className="font-display text-4xl md:text-5xl font-bold text-navy mb-4 leading-tight">
+          <h1 className="text-hero mb-4">
             This is where I practice skills and bring messy ideas to life.
           </h1>
-          <p className="text-charcoal text-lg max-w-2xl">
+          <p className="text-lg max-w-2xl" style={{ color: "var(--text-secondary)" }}>
             Selected projects that show strategic thinking, technical range,
             and what happens when you actually ship.
           </p>
