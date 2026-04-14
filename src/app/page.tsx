@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import WhatWorkingWithMe from "@/components/WhatWorkingWithMe";
 import LogoMarquee from "@/components/LogoMarquee";
@@ -41,17 +40,6 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="bg-ink px-6 pt-24 pb-16 md:pt-28 md:pb-20">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="animate-fade-up flex justify-center mb-6">
-            <Image
-              src="/sarrah.png"
-              alt="Sarrah Renfro"
-              width={88}
-              height={88}
-              className="rounded-full object-cover object-top"
-              style={{ border: "2px solid var(--border)" }}
-              priority
-            />
-          </div>
           <p className="text-eyebrow mb-4 animate-fade-up delay-100">
             Product Manager &nbsp;&middot;&nbsp; Chief of Staff &nbsp;&middot;&nbsp; Strategic Operator
           </p>
