@@ -1,36 +1,11 @@
 import Link from "next/link";
-import { Clock, CheckCircle, Users, Zap, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { CompanyLogo } from "@/components/CompanyLogo";
+import WhatWorkingWithMe from "@/components/WhatWorkingWithMe";
 import { getSubstackPosts, formatDate, truncate } from "@/lib/rss";
 
 export const revalidate = 3600;
 
-const outcomeCards = [
-  {
-    icon: Clock,
-    title: "Reclaim Time",
-    description:
-      "Strategic triage so leaders stay focused on the work only they can do.",
-  },
-  {
-    icon: CheckCircle,
-    title: "Drop Fewer Balls",
-    description:
-      "Systems and follow-through that keep nothing falling through the cracks.",
-  },
-  {
-    icon: Users,
-    title: "Align Teams",
-    description:
-      "Cross-functional clarity that reduces back-and-forth and moves decisions forward.",
-  },
-  {
-    icon: Zap,
-    title: "Move Faster",
-    description:
-      "Less context-switching, fewer bottlenecks, more momentum toward what actually matters.",
-  },
-];
 
 const featuredProjects = [
   {
@@ -114,34 +89,7 @@ export default async function HomePage() {
       </section>
 
       {/* OUTCOMES */}
-      <section className="bg-sand px-6 py-20">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-navy text-center mb-14">
-            What working with me looks like
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {outcomeCards.map((card) => {
-              const Icon = card.icon;
-              return (
-                <div
-                  key={card.title}
-                  className="bg-cream border border-pebble rounded-2xl p-8"
-                >
-                  <div className="w-10 h-10 bg-light rounded-xl flex items-center justify-center mb-5">
-                    <Icon size={20} className="text-terracotta" />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-navy mb-2">
-                    {card.title}
-                  </h3>
-                  <p className="text-charcoal text-sm leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <WhatWorkingWithMe />
 
       {/* CREDIBILITY SNAPSHOT */}
       <section className="bg-light px-6 py-16">
