@@ -91,8 +91,8 @@
 /* ── Base Reset & Defaults ──────────────────────────────────── */
 @layer base {
   html {
-    background-color: var(--bg-page);
-    color: var(--text-primary);
+    background-color: var(--color-sand);
+    color: var(--color-charcoal);
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
@@ -100,13 +100,12 @@
   }
 
   body {
-    background-color: var(--bg-page);
+    background-color: var(--color-sand);
     min-height: 100vh;
   }
 
   h1, h2, h3 {
     font-family: var(--font-display), Georgia, serif;
-    color: var(--text-primary);
     font-weight: 700;
   }
 
@@ -115,7 +114,6 @@
   }
 
   p {
-    color: var(--text-secondary);
     line-height: 1.7;
   }
 

@@ -15,11 +15,12 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-sand/95 backdrop-blur border-b border-pebble">
+    <header className="sticky top-0 z-50 border-b" style={{ backgroundColor: "rgba(11, 18, 24, 0.9)", borderColor: "var(--border-subtle)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-lg font-bold text-terracotta tracking-tight hover:opacity-80 transition-opacity"
+          className="font-display text-lg font-bold tracking-tight hover:opacity-80 transition-opacity"
+          style={{ color: "var(--accent)" }}
         >
           Sarrah Renfro
         </Link>
@@ -30,14 +31,17 @@ export default function Nav() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-charcoal hover:text-navy transition-colors"
+              className="text-sm font-medium transition-colors"
+              style={{ color: "var(--text-secondary)" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "var(--text-primary)")}
+              onMouseLeave={e => (e.currentTarget.style.color = "var(--text-secondary)")}
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="bg-terracotta text-cream text-sm font-medium px-5 py-2 rounded-full hover:bg-terracotta-dark transition-colors"
+            className="btn-primary text-sm"
           >
             Contact
           </Link>
@@ -45,7 +49,8 @@ export default function Nav() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-charcoal p-1"
+          className="md:hidden p-1 transition-colors"
+          style={{ color: "var(--text-secondary)" }}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -55,12 +60,13 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-sand border-t border-pebble px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "var(--bg-base)", borderColor: "var(--border-subtle)" }}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-charcoal hover:text-navy transition-colors"
+              className="text-sm font-medium transition-colors"
+              style={{ color: "var(--text-secondary)" }}
               onClick={() => setOpen(false)}
             >
               {link.label}
@@ -68,7 +74,7 @@ export default function Nav() {
           ))}
           <Link
             href="/contact"
-            className="bg-terracotta text-cream text-sm font-medium px-5 py-2 rounded-full hover:bg-terracotta-dark transition-colors text-center"
+            className="btn-primary text-sm text-center"
             onClick={() => setOpen(false)}
           >
             Contact
