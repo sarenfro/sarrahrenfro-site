@@ -85,9 +85,6 @@
   --sub-gap:        4rem;
   --comp-gap:       2rem;
 
-  /* Typography */
-  --font-display:   var(--font-display);
-  --font-sans:      var(--font-sans);
 }
 
 
