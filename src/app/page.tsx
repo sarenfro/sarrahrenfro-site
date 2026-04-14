@@ -69,32 +69,28 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-sand px-6 pt-24 pb-12 md:pt-32 md:pb-16">
+      <section className="bg-ink px-6 pt-28 pb-20 md:pt-36 md:pb-24">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="font-display text-4xl md:text-6xl font-bold text-navy leading-tight mb-6">
-            I help teams move faster with fewer dropped balls.
+          <p className="text-eyebrow mb-5">
+            Product Manager &nbsp;&middot;&nbsp; Chief of Staff &nbsp;&middot;&nbsp; Strategic Operator
+          </p>
+          <h1 className="text-hero mb-6">
+            I help teams move faster<br className="hidden sm:block" /> with fewer dropped balls.
           </h1>
-          <p className="text-charcoal text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed" style={{ color: "var(--color-slate-muted)" }}>
             Whether you&apos;re a scrappy startup trying to build leverage or an
             established team navigating a complex initiative, I bring strategic
-            clarity and operational follow-through to the work that matters
-            most.
+            clarity and operational follow-through to the work that matters most.
           </p>
-          <p className="text-stone text-sm mb-10">
+          <p className="text-sm mb-10" style={{ color: "var(--color-slate-subtle)" }}>
             MBA candidate at UW Foster &nbsp;&middot;&nbsp; PM and Chief of Staff
             recruiting for 2026 &nbsp;&middot;&nbsp; Seattle-based
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-terracotta text-cream font-medium px-8 py-3 rounded-full hover:bg-terracotta-dark transition-colors text-center"
-            >
-              Let&apos;s Talk
+            <Link href="/contact" className="btn-primary">
+              Let&apos;s Talk &rarr;
             </Link>
-            <Link
-              href="/work"
-              className="border border-navy text-navy font-medium px-8 py-3 rounded-full hover:bg-navy hover:text-cream transition-colors text-center"
-            >
+            <Link href="/work" className="btn-ghost">
               See My Work
             </Link>
           </div>

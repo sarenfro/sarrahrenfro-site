@@ -1,23 +1,436 @@
+/* ============================================================
+   globals.css  —  Steel + Electric Blue design system
+   sarrahrenfro.com
+   Adapted for Tailwind v4 (@import "tailwindcss")
+   Fonts injected via next/font — no @import url() needed.
+   ============================================================ */
+
 @import "tailwindcss";
 
+/* ── Tailwind v4 design tokens ──────────────────────────────── */
+/* Generates bg-*, text-*, border-*, etc. utility classes       */
 @theme {
-  --color-sand: #F8F5F1;
-  --color-navy: #1C2B3A;
-  --color-charcoal: #3D3530;
-  --color-stone: #9B8F87;
-  --color-terracotta: #C4714B;
-  --color-terracotta-dark: #A85D39;
-  --color-cream: #FFFFFF;
-  --color-pebble: #E8E0D8;
-  --color-light: #F2EDE8;
+  /* Warm palette (preserved for existing pages) */
+  --color-sand:           #F8F5F1;
+  --color-navy:           #1C2B3A;
+  --color-charcoal:       #3D3530;
+  --color-stone:          #9B8F87;
+  --color-terracotta:     #C4714B;
+  --color-terracotta-dark:#A85D39;
+  --color-cream:          #FFFFFF;
+  --color-pebble:         #E8E0D8;
+  --color-light:          #F2EDE8;
 
-  --font-display: var(--font-playfair);
-  --font-sans: var(--font-inter);
+  /* Steel + Electric Blue palette */
+  --color-ink:            #07090F;
+  --color-ink-soft:       #111827;
+  --color-ink-card:       #1E2D45;
+  --color-ink-border:     #334D6E;
+  --color-slate-light:    #F0F4FA;
+  --color-slate-muted:    #A8BACE;
+  --color-slate-subtle:   #5C7A94;
+  --color-blue-accent:    #4D9EFF;
+  --color-blue-hover:     #6AAEFF;
+  --color-blue-deep:      #1A6FD4;
+
+  /* Section spacing utilities */
+  --spacing-section:      7.5rem;
+  --spacing-sub:          4rem;
+  --spacing-comp:         2rem;
+
+  /* Max-width utilities */
+  --max-width-content:    72rem;
+  --max-width-prose:      42rem;
+
+  /* Border-radius utilities */
+  --radius-tag:           0.25rem;
+  --radius-card:          0.75rem;
+  --radius-btn:           0.375rem;
+
+  /* Shadow utilities */
+  --shadow-accent-sm:     0 0 0 1px rgba(77, 158, 255, 0.3);
+  --shadow-accent-md:     0 0 16px rgba(77, 158, 255, 0.15);
+  --shadow-card:          0 1px 3px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-card-hover:    0 4px 16px rgba(0,0,0,0.5);
 }
 
-body {
-  background-color: var(--color-sand);
-  color: var(--color-charcoal);
-  font-family: var(--font-sans), system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
+
+/* ── CSS Custom Properties (semantic aliases) ───────────────── */
+/* Used directly inside component class definitions below.      */
+:root {
+  /* Backgrounds */
+  --bg-page:        #07090F;
+  --bg-base:        #111827;
+  --bg-card:        #1E2D45;
+  --bg-card-hover:  #243455;
+
+  /* Borders */
+  --border:         #334D6E;
+  --border-subtle:  rgba(51, 77, 110, 0.5);
+
+  /* Text */
+  --text-primary:   #F0F4FA;
+  --text-secondary: #A8BACE;
+  --text-tertiary:  #5C7A94;
+
+  /* Accent */
+  --accent:         #4D9EFF;
+  --accent-hover:   #6AAEFF;
+  --accent-deep:    #1A6FD4;
+  --accent-tint:    rgba(77, 158, 255, 0.08);
+  --accent-tint-md: rgba(77, 158, 255, 0.15);
+
+  /* Spacing */
+  --section-gap:    7.5rem;
+  --sub-gap:        4rem;
+  --comp-gap:       2rem;
+
+  /* Typography */
+  --font-display:   var(--font-display);
+  --font-sans:      var(--font-sans);
+}
+
+
+/* ── Base Reset & Defaults ──────────────────────────────────── */
+@layer base {
+  html {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display), Georgia, serif;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  h4, h5, h6, p, li, span {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background-color: var(--accent-tint-md);
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar       { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-base); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+}
+
+
+/* ── Component Classes ──────────────────────────────────────── */
+@layer components {
+
+  .ds-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-width: 72rem;
+  }
+
+  /* ── Typography ── */
+  .text-hero {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .text-h1 {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .text-h2 {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .text-h3 {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    line-height: 1.3;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .text-eyebrow {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.375rem;
+    background-color: var(--accent);
+    color: var(--bg-page);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease, transform 0.1s ease;
+  }
+  .btn-primary:hover  { background-color: var(--accent-hover); }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.375rem;
+    background-color: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* ── Cards ── */
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border);
+  }
+
+  .card-accented {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-left: 2px solid var(--accent);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .card-accented:hover {
+    background-color: var(--bg-card-hover);
+    border-color: var(--border);
+    border-left-color: var(--accent);
+  }
+
+  /* ── Tags / Pills ── */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    background-color: var(--accent-tint);
+    color: var(--accent);
+    border: 1px solid rgba(77, 158, 255, 0.2);
+  }
+
+  .tag-muted {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1875rem 0.625rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 0.25rem;
+    background-color: rgba(51, 77, 110, 0.3);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+  }
+
+  /* ── Navigation ── */
+  .nav-link {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.15s ease;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--accent);
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover        { color: var(--text-primary); }
+  .nav-link:hover::after { width: 100%; }
+  .nav-link.active       { color: var(--text-primary); }
+  .nav-link.active::after { width: 100%; }
+
+  /* ── Navbar wrapper ── */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(11, 18, 24, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  /* ── Section spacing ── */
+  .section {
+    padding-top: var(--section-gap);
+    padding-bottom: var(--section-gap);
+  }
+
+  .section-sm {
+    padding-top: var(--sub-gap);
+    padding-bottom: var(--sub-gap);
+  }
+
+  /* ── Credential row (About page) ── */
+  .credential-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .credential-row:last-child { border-bottom: none; }
+
+  /* ── Writing / article list item ── */
+  .article-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: padding-left 0.15s ease;
+    cursor: pointer;
+  }
+  .article-item:hover             { padding-left: 0.5rem; }
+  .article-item:hover .article-title { color: var(--accent); }
+
+  .article-title {
+    font-family: var(--font-display), Georgia, serif;
+    font-size: 1.1875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    transition: color 0.15s ease;
+  }
+
+  .article-subtitle {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
+  }
+
+  .article-date {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Contact form ── */
+  .form-input {
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    color: var(--text-primary);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    outline: none;
+  }
+  .form-input::placeholder { color: var(--text-tertiary); }
+  .form-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-tint);
+  }
+
+  /* ── Logo strip ── */
+  .logo-strip {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .logo-strip img {
+    height: 1.5rem;
+    width: auto;
+    opacity: 0.45;
+    filter: grayscale(1) brightness(2);
+    transition: opacity 0.2s ease;
+  }
+  .logo-strip img:hover { opacity: 0.75; }
+}
+
+
+/* ── Utility Overrides ──────────────────────────────────────── */
+@layer utilities {
+  .text-accent   { color: var(--accent); }
+  .text-muted    { color: var(--text-secondary); }
+  .text-subtle   { color: var(--text-tertiary); }
+  .bg-page       { background-color: var(--bg-page); }
+  .bg-base       { background-color: var(--bg-base); }
+  .bg-card       { background-color: var(--bg-card); }
+  .border-subtle { border-color: var(--border-subtle); }
+  .border-std    { border-color: var(--border); }
 }
