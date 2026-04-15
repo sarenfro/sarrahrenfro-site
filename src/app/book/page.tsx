@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar } from "lucide-react";
 import DateTimePicker from "./components/DateTimePicker";
 import BookingForm from "./components/BookingForm";
 import BookingConfirmation from "./components/BookingConfirmation";
@@ -68,14 +67,6 @@ export default function BookPage() {
   return (
     <div className="min-h-screen bg-light">
       <div className="mx-auto max-w-5xl px-4 py-8">
-        {/* Header */}
-        <div className="flex items-center gap-3 py-4 mb-6">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-terracotta">
-            <Calendar className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-lg font-semibold text-navy font-display">Book a Meeting</span>
-        </div>
-
         {step === "datetime" && (
           <DateTimePicker
             duration={duration}
