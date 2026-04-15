@@ -31,8 +31,8 @@ const capabilities = [
 ];
 
 const credentials = [
-  { icon: GraduationCap, label: "UW Foster MBA, Class of 2027 — Concentration: Product Management" },
-  { icon: Award, label: "Certified Scrum Master" },
+  { icon: GraduationCap, label: "UW Foster MBA, Class of 2027 — Concentration: Artificial Intelligence & Business Operations" },
+  { icon: Award, label: "AgileAlliance Certified Scrum Master (CSM) - 2014 to Present" },
   { icon: Code, label: "B.S. Computer Engineering" },
 ];
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import Link from "next/link";
+import { Send, CalendarDays } from "lucide-react";
 import { LinkedinIcon, GithubIcon } from "@/components/SocialIcons";
 
 const reachOutReasons = [
@@ -67,6 +68,23 @@ export default function ContactPage() {
       {/* FORM SECTION */}
       <section className="bg-light px-6 py-16">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-12">
+          {/* Book a meeting CTA */}
+          <div className="md:col-span-5">
+            <div className="bg-cream border border-pebble rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <p className="font-display text-base font-bold text-navy">Prefer to talk live?</p>
+                <p className="text-stone text-sm mt-0.5">Skip the back-and-forth — pick a time that works for you.</p>
+              </div>
+              <Link
+                href="/book"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-terracotta text-white text-sm font-medium hover:bg-terracotta-dark transition-colors shrink-0"
+              >
+                <CalendarDays size={15} />
+                Book a meeting
+              </Link>
+            </div>
+          </div>
+
           {/* Fit criteria */}
           <div className="md:col-span-2 flex flex-col gap-6">
             <div className="bg-cream border border-pebble rounded-2xl p-7">
