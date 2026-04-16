@@ -22,8 +22,8 @@
   --color-light:          #E8EEF6;
 
   /* Steel + Electric Blue palette */
-  --color-ink:            #07090F;
-  --color-ink-soft:       #111827;
+  --color-ink:            #151720;
+  --color-ink-soft:       #1C1E2B;
   --color-ink-card:       #1A1B23;
   --color-ink-border:     #2C2E3E;
   --color-slate-light:    #F0F4FA;
@@ -59,10 +59,10 @@
 /* Used directly inside component class definitions below.      */
 :root {
   /* Backgrounds */
-  --bg-page:        #07090F;
-  --bg-base:        #111827;
-  --bg-card:        #1A1B23;
-  --bg-card-hover:  #21222D;
+  --bg-page:        #151720;
+  --bg-base:        #1C1E2B;
+  --bg-card:        #22243A;
+  --bg-card-hover:  #2A2C44;
 
   /* Borders */
   --border:         #2C2E3E;
@@ -321,7 +321,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: rgba(11, 18, 24, 0.85);
+    background-color: rgba(21, 23, 32, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-subtle);
