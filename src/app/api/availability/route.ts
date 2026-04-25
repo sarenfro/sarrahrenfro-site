@@ -1,31 +1,11 @@
 import { type NextRequest } from "next/server";
+import ICAL from "ical.js";
 import { parseISO, getDay, isBefore } from "date-fns";
 import { fromZonedTime } from "date-fns-tz";
 
 const PT = "America/Los_Angeles";
 const DAY_START_H = 9;
 const DAY_END_H   = 17;
-
-// ── Windows → IANA timezone map (covers Outlook's common values) ──────────────
-const WIN_TZ: Record<string, string> = {
-  "Pacific Standard Time":   "America/Los_Angeles",
-  "Mountain Standard Time":  "America/Denver",
-  "US Mountain Standard Time": "America/Phoenix",
-  "Central Standard Time":   "America/Chicago",
-  "Eastern Standard Time":   "America/New_York",
-  "UTC":                     "UTC",
-  "Greenwich Standard Time": "UTC",
-  "GMT Standard Time":       "Europe/London",
-  "Romance Standard Time":   "Europe/Paris",
-  "W. Europe Standard Time": "Europe/Berlin",
-  "AUS Eastern Standard Time": "Australia/Sydney",
-};
-
-function winToIana(tz: string): string {
-  return WIN_TZ[tz] ?? tz; // fall back to the raw value (may already be IANA)
-}
-
-// ── Slot generation ───────────────────────────────────────────────────────────
 
 function to12h(h: number, m: number): string {
   const period = h < 12 ? "am" : "pm";
@@ -44,8 +24,6 @@ function generateSlots(durationMinutes: number): { h: number; m: number }[] {
   }
   return slots;
 }
-
-// ── ICS fetching + parsing ────────────────────────────────────────────────────
 
 interface BusyRange { start: Date; end: Date }
 
@@ -66,104 +44,63 @@ async function fetchBusyRanges(dateStr: string): Promise<BusyRange[]> {
   }
 }
 
-/** Unfold ICS line continuations (CRLF + whitespace) */
-function unfold(ics: string): string {
-  return ics.replace(/\r?\n[ \t]/g, "");
-}
-
-/**
- * Extract VEVENT properties including the TZID parameter.
- * Returns { value, tzid } for a given property name.
- */
-function extractProp(block: string, prop: string): { value: string; tzid: string | null } | null {
-  // Matches: PROP:value  OR  PROP;PARAM=...:value
-  const re = new RegExp(
-    `^${prop}((?:;[^:]+)*):(.*?)$`,
-    "im"
-  );
-  const m = block.match(re);
-  if (!m) return null;
-
-  const params = m[1] ?? "";
-  const value  = m[2].trim();
-
-  // Extract TZID from params like ";TZID=Pacific Standard Time"
-  const tzMatch = params.match(/;TZID=([^;:]+)/i);
-  const tzid    = tzMatch ? tzMatch[1].trim() : null;
-
-  return { value, tzid };
-}
-
-/** Parse an ICS datetime string to a UTC Date, respecting TZID. */
-function parseICSDatetime(value: string, tzid: string | null): Date | null {
-  // Normalise: remove any embedded Z or non-alphanumeric except T
-  const clean = value.replace(/[^0-9T]/g, "");
-
-  // All-day: YYYYMMDD
-  if (clean.length === 8) {
-    return new Date(`${clean.slice(0,4)}-${clean.slice(4,6)}-${clean.slice(6,8)}T00:00:00Z`);
-  }
-
-  // Datetime: YYYYMMDDTHHmmss
-  if (clean.length < 15) return null;
-  const y  = clean.slice(0, 4);
-  const mo = clean.slice(4, 6);
-  const d  = clean.slice(6, 8);
-  const hh = clean.slice(9, 11);
-  const mm = clean.slice(11, 13);
-  const ss = clean.slice(13, 15);
-  const local = new Date(`${y}-${mo}-${d}T${hh}:${mm}:${ss}`);
-
-  // UTC (value ends in Z before normalisation)
-  if (value.trimEnd().endsWith("Z")) {
-    return new Date(`${y}-${mo}-${d}T${hh}:${mm}:${ss}Z`);
-  }
-
-  // Floating with TZID
-  if (tzid) {
-    const iana = winToIana(tzid);
-    try {
-      return fromZonedTime(local, iana);
-    } catch {
-      return fromZonedTime(local, PT); // safe fallback
-    }
-  }
-
-  // Floating with no timezone — assume PT (most of Sarrah's events will be)
-  return fromZonedTime(local, PT);
-}
-
-function parseICSBusy(ics: string, dateStr: string): BusyRange[] {
-  const unfolded = unfold(ics);
-  const events   = unfolded.split(/BEGIN:VEVENT/i);
-  const busy: BusyRange[] = [];
-
-  // Boundary of the target date in PT
+function parseICSBusy(icsText: string, dateStr: string): BusyRange[] {
   const [yr, mo, dy] = dateStr.split("-").map(Number);
   const dayStart = fromZonedTime(new Date(yr, mo - 1, dy, 0,  0,  0), PT);
   const dayEnd   = fromZonedTime(new Date(yr, mo - 1, dy, 23, 59, 59), PT);
 
-  for (let i = 1; i < events.length; i++) {
-    const block = events[i];
+  let jCal: unknown;
+  try {
+    jCal = ICAL.parse(icsText);
+  } catch {
+    return [];
+  }
 
-    // Skip transparent / free events
-    const transp = extractProp(block, "TRANSP");
-    if (transp?.value.toUpperCase() === "TRANSPARENT") continue;
+  const vcal = new ICAL.Component(jCal as ICAL.Component["jCal"]);
 
-    const busyStatus = extractProp(block, "X-MICROSOFT-CDO-BUSYSTATUS");
-    if (busyStatus?.value.toUpperCase() === "FREE") continue;
+  // Register all VTIMEZONE components so ical.js resolves them correctly
+  for (const vtz of vcal.getAllSubcomponents("vtimezone")) {
+    try {
+      ICAL.TimezoneService.register(new ICAL.Timezone(vtz));
+    } catch {
+      // ignore unknown/malformed timezones
+    }
+  }
 
-    const startProp = extractProp(block, "DTSTART");
-    const endProp   = extractProp(block, "DTEND");
-    if (!startProp || !endProp) continue;
+  const busy: BusyRange[] = [];
 
-    const start = parseICSDatetime(startProp.value, startProp.tzid);
-    const end   = parseICSDatetime(endProp.value,   endProp.tzid);
-    if (!start || !end) continue;
+  for (const vevent of vcal.getAllSubcomponents("vevent")) {
+    const transp      = vevent.getFirstPropertyValue("transp");
+    const busyStatus  = vevent.getFirstPropertyValue("x-microsoft-cdo-busystatus");
 
-    // Keep only events that overlap the target date
-    if (start < dayEnd && end > dayStart) {
-      busy.push({ start, end });
+    if (typeof transp     === "string" && transp.toUpperCase()     === "TRANSPARENT") continue;
+    if (typeof busyStatus === "string" && busyStatus.toUpperCase() === "FREE")        continue;
+
+    const event = new ICAL.Event(vevent);
+
+    if (event.isRecurring()) {
+      const iter = event.iterator();
+      let next: ICAL.Time | null;
+      let count = 0;
+
+      while (count++ < 1000 && !iter.complete && (next = iter.next())) {
+        const occStart = next.toJSDate();
+        if (occStart > dayEnd) break;
+
+        const details  = event.getOccurrenceDetails(next);
+        const occEnd   = details.endDate.toJSDate();
+
+        if (occStart < dayEnd && occEnd > dayStart) {
+          busy.push({ start: occStart, end: occEnd });
+        }
+      }
+    } else {
+      const start = event.startDate.toJSDate();
+      const end   = event.endDate.toJSDate();
+
+      if (start < dayEnd && end > dayStart) {
+        busy.push({ start, end });
+      }
     }
   }
 
@@ -173,8 +110,6 @@ function parseICSBusy(ics: string, dateStr: string): BusyRange[] {
 function overlaps(slotStart: Date, slotEnd: Date, busy: BusyRange[]): boolean {
   return busy.some((b) => slotStart < b.end && slotEnd > b.start);
 }
-
-// ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
