@@ -133,31 +133,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF */}
-      <section className="bg-light px-6 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-3xl font-bold text-navy text-center mb-10">
-            What others say
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2].map((i) => (
-              <div
-                key={i}
-                className="bg-cream border border-pebble rounded-2xl p-8"
-              >
-                <p className="text-stone text-sm italic leading-relaxed mb-6">
-                  &ldquo;[Reference quote from executive or professor — to be added]&rdquo;
-                </p>
-                <div>
-                  <p className="text-navy font-semibold text-sm">Name, Title</p>
-                  <p className="text-stone text-xs">Company</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* WRITING TEASER */}
       <section className="bg-sand px-6 py-20">
         <div className="max-w-5xl mx-auto">

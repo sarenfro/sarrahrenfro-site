@@ -10,8 +10,8 @@ const companies = [
 ];
 
 export default function LogoMarquee() {
-  // Duplicate for seamless loop
-  const items = [...companies, ...companies];
+  // 4 copies ensures the band fills any viewport width; animate -25% = exactly one set
+  const items = [...companies, ...companies, ...companies, ...companies];
 
   return (
     <div className="overflow-hidden">
