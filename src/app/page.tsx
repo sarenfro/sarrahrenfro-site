@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import WhatWorkingWithMe from "@/components/WhatWorkingWithMe";
 import LogoMarquee from "@/components/LogoMarquee";
@@ -75,22 +76,35 @@ export default async function HomePage() {
 
       {/* CREDIBILITY SNAPSHOT */}
       <section className="bg-cream px-6 py-20">
-        <div className="max-w-2xl mx-auto text-center">
-          <div className="w-10 h-1 rounded-full mx-auto mb-8" style={{ backgroundColor: "var(--accent)" }} />
-          <p className="text-navy text-xl md:text-2xl leading-relaxed font-semibold mb-8">
-            I&apos;m a product strategist and AI transformation specialist with a
-            background in computer engineering and five-plus years inside Boeing,
-            T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA candidate
-            at UW Foster, concentrating in AI &amp; Business Operations. I
-            evaluate AI systems, build AI-powered products, and help
-            organizations move from AI curiosity to AI capability.
-          </p>
-          <Link
-            href="/about"
-            className="inline-flex items-center gap-2 text-terracotta font-medium hover:gap-3 transition-all"
-          >
-            More about me <ArrowRight size={16} />
-          </Link>
+        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
+          {/* Photo */}
+          <div className="shrink-0 w-56 md:w-64">
+            <Image
+              src="/sarrah-paccar.png"
+              alt="Sarrah Renfro at UW Foster Paccar Hall"
+              width={320}
+              height={480}
+              className="rounded-2xl object-cover object-top w-full"
+            />
+          </div>
+          {/* Text */}
+          <div>
+            <div className="w-10 h-1 rounded-full mb-6" style={{ backgroundColor: "var(--accent)" }} />
+            <p className="text-navy text-xl md:text-2xl leading-relaxed font-semibold mb-6">
+              I&apos;m a product strategist and AI transformation specialist with a
+              background in computer engineering and five-plus years inside Boeing,
+              T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA candidate
+              at UW Foster, concentrating in AI &amp; Business Operations. I
+              evaluate AI systems, build AI-powered products, and help
+              organizations move from AI curiosity to AI capability.
+            </p>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 text-terracotta font-medium hover:gap-3 transition-all"
+            >
+              More about me <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
