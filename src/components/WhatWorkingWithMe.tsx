@@ -35,8 +35,8 @@ export default function WhatWorkingWithMe() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {cards.map(({ icon: Icon, title, body }, i) => (
-            <ScrollReveal key={title} delay={i * 100}>
-              <div className="bg-white border border-blue-100 rounded-xl p-6 transition-colors duration-200 hover:bg-blue-50 hover:border-blue-200">
+            <ScrollReveal key={title} delay={i * 100} className="h-full">
+              <div className="bg-white border border-blue-100 rounded-xl p-6 transition-colors duration-200 hover:bg-blue-50 hover:border-blue-200 h-full">
                 <div className="flex items-center gap-2 mb-2">
                   <Icon size={17} className="text-[#4D9EFF] shrink-0" strokeWidth={2} />
                   <h3 className="font-display text-[1.0625rem] font-bold text-[#0F172A] leading-snug">
