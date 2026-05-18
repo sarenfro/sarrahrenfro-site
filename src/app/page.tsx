@@ -23,10 +23,10 @@ const featuredProjects = [
     href: "/work",
   },
   {
-    name: "PowROI",
+    name: "MBAA Event Calendar",
     outcome:
-      "Ski pass ROI advisor comparing Ikon, Epic, Mountain Collective, and Indy across 50 resorts. Interactive map, break-even charts, and sensitivity tables.",
-    tags: ["Product", "Web App", "Live"],
+      "Governance and event tooling for Foster's MBA student association, including an anonymous voting module with row-level security.",
+    tags: ["TypeScript", "Supabase", "Governance"],
     href: "/work",
   },
 ];
