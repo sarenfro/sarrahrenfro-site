@@ -22,13 +22,13 @@
   --color-light:          #E8EEF6;
 
   /* Steel + Electric Blue palette */
-  --color-ink:            #151720;
-  --color-ink-soft:       #1C1E2B;
-  --color-ink-card:       #1A1B23;
-  --color-ink-border:     #2C2E3E;
+  --color-ink:            #F0F6FF;
+  --color-ink-soft:       #E8F0FE;
+  --color-ink-card:       #FFFFFF;
+  --color-ink-border:     #DBEAFE;
   --color-slate-light:    #F0F4FA;
-  --color-slate-muted:    #A8BACE;
-  --color-slate-subtle:   #5C7A94;
+  --color-slate-muted:    #475569;
+  --color-slate-subtle:   #64748B;
   --color-blue-accent:    #4D9EFF;
   --color-blue-hover:     #6AAEFF;
   --color-blue-deep:      #1A6FD4;
@@ -59,19 +59,19 @@
 /* Used directly inside component class definitions below.      */
 :root {
   /* Backgrounds */
-  --bg-page:        #151720;
-  --bg-base:        #1C1E2B;
-  --bg-card:        #22243A;
-  --bg-card-hover:  #2A2C44;
+  --bg-page:        #F0F6FF;
+  --bg-base:        #FFFFFF;
+  --bg-card:        #FFFFFF;
+  --bg-card-hover:  #EFF6FF;
 
   /* Borders */
-  --border:         #2C2E3E;
-  --border-subtle:  rgba(44, 46, 62, 0.5);
+  --border:         #CBD5E1;
+  --border-subtle:  rgba(203, 213, 225, 0.7);
 
   /* Text */
-  --text-primary:   #F0F4FA;
-  --text-secondary: #A8BACE;
-  --text-tertiary:  #5C7A94;
+  --text-primary:   #0F172A;
+  --text-secondary: #475569;
+  --text-tertiary:  #94A3B8;
 
   /* Accent */
   --accent:         #4D9EFF;
@@ -91,7 +91,7 @@
 /* ── Base Reset & Defaults ──────────────────────────────────── */
 @layer base {
   html {
-    background-color: var(--color-sand);
+    background-color: #FFFFFF;
     color: var(--color-navy);
     font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, sans-serif;
     font-size: 17px;
@@ -100,7 +100,7 @@
   }
 
   body {
-    background-color: var(--color-sand);
+    background-color: #FFFFFF;
     min-height: 100vh;
   }
 
@@ -128,8 +128,8 @@
   }
 
   ::-webkit-scrollbar       { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-base); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: #F1F5F9; }
+  ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
   hr {
@@ -202,7 +202,7 @@
     gap: 0.375rem;
     padding: 0.625rem 1.375rem;
     background-color: var(--accent);
-    color: var(--bg-page);
+    color: #FFFFFF;
     font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", ui-sans-serif, sans-serif;
     font-size: 0.9375rem;
     font-weight: 500;
@@ -321,7 +321,7 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background-color: rgba(21, 23, 32, 0.85);
+    background-color: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-subtle);
@@ -411,11 +411,11 @@
   .logo-strip img {
     height: 1.5rem;
     width: auto;
-    opacity: 0.45;
-    filter: grayscale(1) brightness(2);
+    opacity: 0.5;
+    filter: grayscale(1);
     transition: opacity 0.2s ease;
   }
-  .logo-strip img:hover { opacity: 0.75; }
+  .logo-strip img:hover { opacity: 0.85; }
 }
 
 

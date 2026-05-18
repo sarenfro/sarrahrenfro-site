@@ -41,15 +41,15 @@ export default async function HomePage() {
       <section className="bg-ink px-6 pt-24 pb-16 md:pt-28 md:pb-20">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-eyebrow mb-4 animate-fade-up delay-100">
-            Product Manager &nbsp;&middot;&nbsp; Chief of Staff &nbsp;&middot;&nbsp; Strategic Operator
+            AI Strategist &nbsp;&middot;&nbsp; Product Manager &nbsp;&middot;&nbsp; Digital Transformation
           </p>
           <h1 className="text-hero mb-5 animate-fade-up delay-200" style={{ fontSize: "clamp(2.25rem, 5vw, 3.5rem)" }}>
-            I help teams move faster with fewer dropped balls.
+            I help organizations turn AI strategy into business results.
           </h1>
           <p className="text-base max-w-xl mx-auto mb-8 leading-relaxed animate-fade-up delay-300" style={{ color: "var(--color-slate-muted)" }}>
-            Whether you&apos;re a scrappy startup trying to build leverage or an
-            established team navigating a complex initiative, I bring strategic
-            clarity and operational follow-through to the work that matters most.
+            From defining your AI roadmap to shipping AI-powered products, I
+            bring technical fluency and strategic clarity to the initiatives
+            that actually move the needle.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-fade-up delay-400">
             <Link href="/contact" className="btn-primary">
@@ -77,11 +77,12 @@ export default async function HomePage() {
       <section className="bg-light px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-charcoal text-lg leading-relaxed mb-6">
-            I&apos;m a product strategist and operator with a background in
-            computer engineering and five-plus years working inside Boeing,
+            I&apos;m a product strategist and AI transformation specialist with a
+            background in computer engineering and five-plus years inside Boeing,
             T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA candidate
-            at UW Foster, concentrating in Product Management. I build things,
-            ship things, and make sure teams don&apos;t lose the thread.
+            at UW Foster, concentrating in AI &amp; Business Operations. I
+            evaluate AI systems, build AI-powered products, and help
+            organizations move from AI curiosity to AI capability.
           </p>
           <Link
             href="/about"
@@ -220,11 +221,11 @@ export default async function HomePage() {
       <section className="bg-terracotta px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-cream mb-4">
-            Let&apos;s connect.
+            Ready to transform your business with AI?
           </h2>
           <p className="text-cream/80 mb-8">
-            Recruiting for a PM, Chief of Staff, or strategic operator role?
-            Let&apos;s talk.
+            Whether you&apos;re exploring where AI fits or already building and
+            need strategic leadership — let&apos;s talk.
           </p>
           <Link
             href="/contact"

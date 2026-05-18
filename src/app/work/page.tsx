@@ -72,10 +72,10 @@ export default function WorkPage() {
       <section className="bg-ink px-6 py-20 md:py-28">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-hero mb-4">
-            This is where I practice skills and bring messy ideas to life.
+            This is where AI strategy meets execution.
           </h1>
           <p className="text-lg max-w-2xl" style={{ color: "var(--text-secondary)" }}>
-            Selected projects that show strategic thinking, technical range,
+            Selected projects that demonstrate AI fluency, technical range,
             and what happens when you actually ship.
           </p>
         </div>
@@ -167,10 +167,10 @@ export default function WorkPage() {
       <section className="bg-terracotta px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-3xl font-bold text-cream mb-4">
-            Let&apos;s connect.
+            Ready to build something together?
           </h2>
           <p className="text-cream/80 mb-8">
-            Recruiting for a PM, Chief of Staff, or strategic operator role?
+            Looking for AI product leadership or transformation strategy?
             Let&apos;s talk.
           </p>
           <Link

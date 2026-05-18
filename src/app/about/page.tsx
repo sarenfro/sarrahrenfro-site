@@ -6,27 +6,27 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About | Sarrah Renfro",
   description:
-    "Product strategist and operator with roots in computer engineering and five-plus years of cross-functional experience at Boeing, T-Mobile, TD Bank, and Microsoft.",
+    "AI transformation specialist and product strategist with roots in computer engineering and five-plus years of cross-functional experience at Boeing, T-Mobile, TD Bank, and Microsoft.",
 };
 
 const capabilities = [
   {
     icon: Code,
-    title: "Computer engineering background",
+    title: "Technical fluency in AI systems",
     description:
-      "I can work with technical teams without translation, and I catch when something is technically sound but strategically off.",
+      "I work directly with AI and engineering teams without translation — and catch when something is technically feasible but strategically backwards.",
   },
   {
     icon: Briefcase,
-    title: "Cross-functional operator experience",
+    title: "Cross-functional operator",
     description:
-      "I've coordinated across engineering, marketing, finance, and leadership in enterprise and startup-adjacent environments.",
+      "I've moved AI initiatives through engineering, product, finance, and leadership at enterprise scale — in organizations that weren't designed for them.",
   },
   {
     icon: ArrowRight,
-    title: "Product and strategy",
+    title: "Strategy meets execution",
     description:
-      "I think in systems, prioritize ruthlessly, and communicate up and across without losing fidelity.",
+      "I think in systems, communicate up and across without losing fidelity, and don't lose the thread between the AI strategy deck and the sprint.",
   },
 ];
 
@@ -48,13 +48,14 @@ export default function AboutPage() {
               Why Sarrah, specifically?
             </h1>
             <p className="text-lg leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-              I&apos;m a product strategist and operator with roots in computer
-              engineering and five-plus years of cross-functional experience at
-              Boeing, T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA
-              candidate at UW Foster (Class of 2027), concentrating in Product
-              Management. My superpower is operating at the intersection of
-              technical and strategic: I can read a system diagram and a market
-              map in the same afternoon, and I know which one to act on first.
+              I&apos;m a product strategist and AI transformation specialist with
+              roots in computer engineering and five-plus years of cross-functional
+              experience at Boeing, T-Mobile, TD Bank, and Microsoft. I&apos;m
+              currently an MBA candidate at UW Foster (Class of 2027),
+              concentrating in AI &amp; Business Operations. My superpower is
+              operating at the intersection of technical and strategic: I can
+              assess an AI system&apos;s limitations and a market opportunity in the
+              same afternoon — and know which one to act on first.
             </p>
           </div>
           {/* Photo */}
@@ -144,10 +145,11 @@ export default function AboutPage() {
       <section className="bg-terracotta px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-3xl font-bold text-cream mb-4">
-            Want to work together?
+            Want to explore AI transformation together?
           </h2>
           <p className="text-cream/80 mb-8">
-            Let&apos;s talk about what you&apos;re building and where I can help.
+            Let&apos;s talk about where AI creates real leverage for your
+            organization.
           </p>
           <Link
             href="/contact"

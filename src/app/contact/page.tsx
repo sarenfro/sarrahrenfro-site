@@ -93,10 +93,10 @@ export default function ContactPage() {
               </h2>
               <ul className="flex flex-col gap-3">
                 {[
-                  "Hiring for a PM, Product Marketing, or Chief of Staff role in the Seattle area (or remote-open)",
-                  "A founder or early-stage team that needs someone who can hold the strategic and the tactical at the same time",
-                  "A collaborator interested in building something in the AI or product space",
-                  "Someone who wants to discuss something from Sarrah's Sandbox",
+                  "Exploring how AI can transform your core business operations",
+                  "A product team building AI-powered features and needing strategic and technical leadership",
+                  "A founder or executive who needs someone to evaluate, pilot, and scale AI initiatives",
+                  "A collaborator interested in building something at the intersection of AI and product",
                 ].map((item) => (
                   <li key={item} className="flex gap-3 text-charcoal text-sm leading-relaxed">
                     <span className="text-terracotta shrink-0 mt-0.5">&#8227;</span>
@@ -111,8 +111,9 @@ export default function ContactPage() {
                 Probably not a great fit if...
               </h2>
               <p className="text-stone text-sm leading-relaxed">
-                You&apos;re looking for an Executive Assistant or someone to execute
-                without context. I work best when I&apos;m close to the problem.
+                You need pure execution with no strategic input. I work best
+                when I&apos;m close to the problem and can influence the direction
+                — not just carry it out.
               </p>
             </div>
 
@@ -266,11 +267,11 @@ export default function ContactPage() {
       <section className="bg-terracotta px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-3xl font-bold text-cream mb-4">
-            Let&apos;s connect.
+            Ready to explore AI transformation?
           </h2>
           <p className="text-cream/80 mb-8">
-            Recruiting for a PM, Chief of Staff, or strategic operator role?
-            Let&apos;s talk.
+            Whether you&apos;re early stage or scaling, let&apos;s talk about
+            where AI can move the needle.
           </p>
           <a
             href="https://www.linkedin.com/in/sarrahrenfro"

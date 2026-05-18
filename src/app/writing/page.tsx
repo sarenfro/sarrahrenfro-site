@@ -90,12 +90,12 @@ export default async function WritingPage() {
       </section>
 
       {/* SUBSCRIBE CTA */}
-      <section className="bg-navy px-6 py-16">
+      <section className="bg-sand px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="font-display text-3xl font-bold text-cream mb-3">
+          <h2 className="font-display text-3xl font-bold text-navy mb-3">
             Get it in your inbox.
           </h2>
-          <p className="text-cream/70 mb-8">
+          <p className="text-charcoal mb-8">
             New posts on AI, product, and what&apos;s actually worth paying
             attention to.
           </p>
@@ -114,11 +114,11 @@ export default async function WritingPage() {
       <section className="bg-terracotta px-6 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-3xl font-bold text-cream mb-4">
-            Let&apos;s connect.
+            Interested in AI transformation?
           </h2>
           <p className="text-cream/80 mb-8">
-            Recruiting for a PM, Chief of Staff, or strategic operator role?
-            Let&apos;s talk.
+            Let&apos;s connect and explore what that could look like for your
+            organization.
           </p>
           <Link
             href="/contact"

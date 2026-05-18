@@ -12,9 +12,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sarrah Renfro | Product Manager & Strategic Operator",
+  title: "Sarrah Renfro | AI Digital Transformation",
   description:
-    "Product strategist and operator with a background in computer engineering. MBA candidate at UW Foster. Recruiting for PM, Chief of Staff, and Product Marketing roles in Seattle.",
+    "AI transformation specialist and product strategist with a background in computer engineering. I help organizations navigate AI adoption, build AI-powered products, and turn strategy into measurable business outcomes. MBA candidate at UW Foster.",
   metadataBase: new URL("https://sarrahrenfro.com"),
 };
 

@@ -1,7 +1,23 @@
 import { type NextRequest } from "next/server";
 import { Resend } from "resend";
+import { fromZonedTime } from "date-fns-tz";
+import { generateICS } from "@/lib/generateICS";
 
 const MY_NAME = "Sarrah Renfro";
+const PT = "America/Los_Angeles";
+
+function parseSlotUTC(dateStr: string, timeStr: string): Date {
+  // timeStr format from availability API: "9:00am", "10:30pm", etc.
+  const match = timeStr.match(/^(\d+):(\d{2})(am|pm)$/i);
+  if (!match) throw new Error(`Invalid time format: ${timeStr}`);
+  let h = parseInt(match[1], 10);
+  const m = parseInt(match[2], 10);
+  const period = match[3].toLowerCase();
+  if (period === "pm" && h !== 12) h += 12;
+  if (period === "am" && h === 12) h = 0;
+  const [yr, mo, dy] = dateStr.split("-").map(Number);
+  return fromZonedTime(new Date(yr, mo - 1, dy, h, m, 0), PT);
+}
 
 function buildConfirmationHTML(params: {
   bookerName: string;
@@ -42,12 +58,13 @@ function buildConfirmationHTML(params: {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, notes, date, time } = body as {
+    const { name, email, notes, date, time, duration_minutes } = body as {
       name: string;
       email: string;
       notes?: string;
       date: string;
       time: string;
+      duration_minutes?: number;
     };
 
     if (!name || !email || !date || !time) {
@@ -61,20 +78,43 @@ export async function POST(request: NextRequest) {
     if (RESEND_KEY && MY_EMAIL) {
       const resend = new Resend(RESEND_KEY);
 
+      const durationMins = duration_minutes ?? 30;
+      const startUTC = parseSlotUTC(date, time);
+      const endUTC   = new Date(startUTC.getTime() + durationMins * 60_000);
+
+      const ics = generateICS({
+        title:          `Meeting: ${name} + ${MY_NAME}`,
+        description:    notes ?? "",
+        startISO:       startUTC.toISOString(),
+        endISO:         endUTC.toISOString(),
+        organizerEmail: MY_EMAIL,
+        organizerName:  MY_NAME,
+        attendeeEmail:  email,
+        attendeeName:   name,
+      });
+
+      const icsAttachment = {
+        filename:     "meeting.ics",
+        content:      Buffer.from(ics),
+        content_type: "text/calendar; method=REQUEST",
+      };
+
       await Promise.all([
         // Confirmation to booker
         resend.emails.send({
-          from: `${MY_NAME} <onboarding@resend.dev>`,
-          to: email,
-          subject: "Your meeting is confirmed",
-          html: buildConfirmationHTML({ bookerName: name, date, time, notes, isHost: false }),
+          from:        `${MY_NAME} <bookings@sarrahrenfro.com>`,
+          to:          email,
+          subject:     "Your meeting is confirmed",
+          html:        buildConfirmationHTML({ bookerName: name, date, time, notes, isHost: false }),
+          attachments: [icsAttachment],
         }),
         // Notification to Sarrah
         resend.emails.send({
-          from: `Booking System <onboarding@resend.dev>`,
-          to: MY_EMAIL,
-          subject: `New booking: ${name} — ${date} at ${time}`,
-          html: buildConfirmationHTML({ bookerName: name, date, time, notes, isHost: true }),
+          from:        `Booking System <bookings@sarrahrenfro.com>`,
+          to:          MY_EMAIL,
+          subject:     `New booking: ${name} — ${date} at ${time}`,
+          html:        buildConfirmationHTML({ bookerName: name, date, time, notes, isHost: true }),
+          attachments: [icsAttachment],
         }),
       ]);
     }

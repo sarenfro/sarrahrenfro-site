@@ -26,7 +26,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b relative" style={{ backgroundColor: "rgba(11, 18, 24, 0.9)", borderColor: "var(--border-subtle)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
+    <header className="sticky top-0 z-50 border-b relative" style={{ backgroundColor: "rgba(255, 255, 255, 0.92)", borderColor: "var(--border-subtle)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}>
       {/* Scroll progress bar */}
       <div
         className="absolute bottom-0 left-0 h-[2px] transition-all duration-75"
@@ -76,7 +76,7 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "var(--bg-base)", borderColor: "var(--border-subtle)" }}>
+        <div className="md:hidden border-t px-6 py-4 flex flex-col gap-4" style={{ backgroundColor: "#FFFFFF", borderColor: "var(--border-subtle)" }}>
           {navLinks.map((link) => (
             <Link
               key={link.href}

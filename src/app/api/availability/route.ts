@@ -27,9 +27,7 @@ function generateSlots(durationMinutes: number): { h: number; m: number }[] {
 
 interface BusyRange { start: Date; end: Date }
 
-async function fetchBusyRanges(dateStr: string): Promise<BusyRange[]> {
-  const icsUrl = process.env.OUTLOOK_ICS_URL;
-  if (!icsUrl) return [];
+async function fetchCalendarBusy(icsUrl: string, dateStr: string): Promise<BusyRange[]> {
   try {
     const res = await fetch(icsUrl, {
       headers: { "User-Agent": "sarrahrenfro-booking/1.0" },
@@ -42,6 +40,18 @@ async function fetchBusyRanges(dateStr: string): Promise<BusyRange[]> {
     console.error("ICS fetch error:", err);
     return [];
   }
+}
+
+async function fetchBusyRanges(dateStr: string): Promise<BusyRange[]> {
+  const urls = [
+    process.env.OUTLOOK_ICS_URL,
+    process.env.GOOGLE_ICS_URL,
+  ].filter(Boolean) as string[];
+
+  if (urls.length === 0) return [];
+
+  const results = await Promise.all(urls.map((url) => fetchCalendarBusy(url, dateStr)));
+  return results.flat();
 }
 
 function parseICSBusy(icsText: string, dateStr: string): BusyRange[] {
