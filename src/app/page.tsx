@@ -74,24 +74,23 @@ export default async function HomePage() {
       <WhatWorkingWithMe />
 
       {/* CREDIBILITY SNAPSHOT */}
-      <section className="bg-light px-6 py-16">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-2xl border border-pebble shadow-sm px-10 py-10 text-center" style={{ borderLeft: "4px solid var(--accent)" }}>
-            <p className="text-navy text-xl leading-relaxed mb-6 font-medium">
-              I&apos;m a product strategist and AI transformation specialist with a
-              background in computer engineering and five-plus years inside Boeing,
-              T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA candidate
-              at UW Foster, concentrating in AI &amp; Business Operations. I
-              evaluate AI systems, build AI-powered products, and help
-              organizations move from AI curiosity to AI capability.
-            </p>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-terracotta font-medium hover:gap-3 transition-all"
-            >
-              More about me <ArrowRight size={16} />
-            </Link>
-          </div>
+      <section className="bg-cream px-6 py-20">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="w-10 h-1 rounded-full mx-auto mb-8" style={{ backgroundColor: "var(--accent)" }} />
+          <p className="text-navy text-xl md:text-2xl leading-relaxed font-semibold mb-8">
+            I&apos;m a product strategist and AI transformation specialist with a
+            background in computer engineering and five-plus years inside Boeing,
+            T-Mobile, TD Bank, and Microsoft. I&apos;m currently an MBA candidate
+            at UW Foster, concentrating in AI &amp; Business Operations. I
+            evaluate AI systems, build AI-powered products, and help
+            organizations move from AI curiosity to AI capability.
+          </p>
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 text-terracotta font-medium hover:gap-3 transition-all"
+          >
+            More about me <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
