@@ -61,7 +61,7 @@ export default function AboutPage() {
           {/* Photo */}
           <div className="shrink-0">
             <Image
-              src="/sarrah.png"
+              src="/sarrah.jpg"
               alt="Sarrah Renfro"
               width={280}
               height={340}
