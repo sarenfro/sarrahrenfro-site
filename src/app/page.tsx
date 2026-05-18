@@ -9,24 +9,24 @@ export const revalidate = 3600;
 
 const featuredProjects = [
   {
+    name: "AI Learning Lab",
+    outcome:
+      "Built the program infrastructure for Foster's AI Learning Lab — student portal, company portal, and admin layer on Supabase.",
+    tags: ["AI", "Product", "TypeScript", "Supabase"],
+    href: "/work",
+  },
+  {
+    name: "HuskySync",
+    outcome:
+      "Built a from-scratch Calendly equivalent with personal booking pages, team scheduling, Google Calendar sync, iCal support, and an admin dashboard.",
+    tags: ["Product", "TypeScript", "Supabase"],
+    href: "/work",
+  },
+  {
     name: "PowROI",
     outcome:
-      "Built a web app that helps skiers calculate and compare pass ROI across resorts. Translated V1 user feedback into a structured V2 feature roadmap.",
-    tags: ["Product", "Next.js", "Deployed"],
-    href: "/work",
-  },
-  {
-    name: "Quizzler",
-    outcome:
-      "Built and deployed a FastAPI quiz app, then wrote about the process publicly. Technical range meets communication.",
-    tags: ["Engineering", "Python", "FastAPI"],
-    href: "/work",
-  },
-  {
-    name: "LLM Evaluation Framework",
-    outcome:
-      "Designed a business-focused benchmark comparing ChatGPT, Claude, Gemini, and Copilot across five dimensions: strategy, financial modeling, executive communication, due diligence, and ambiguity handling.",
-    tags: ["AI", "Research", "Product Strategy"],
+      "Ski pass ROI advisor comparing Ikon, Epic, Mountain Collective, and Indy across 50 resorts. Interactive map, break-even charts, and sensitivity tables.",
+    tags: ["Product", "Web App", "Live"],
     href: "/work",
   },
 ];

@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/components/SocialIcons";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Work | Sarrah Renfro",
   description:
-    "Selected projects showing strategic thinking, technical range, and what happens when you actually ship.",
+    "Selected projects showing AI fluency, technical range, and what happens when you actually ship.",
 };
 
 interface Project {
@@ -16,54 +17,171 @@ interface Project {
   tags: string[];
   link?: string;
   linkLabel?: string;
+  github?: string;
   screenshot?: string;
-  placeholder?: boolean;
 }
 
 const projects: Project[] = [
   {
+    name: "AI Learning Lab",
+    outcome: "Program infrastructure for Foster's AI Learning Lab.",
+    description:
+      "Built the full operational backbone for the Foster AI Learning Lab: a student portal, company portal, and admin layer, all backed by Supabase with row-level security. Static HTML front-end with TypeScript glue connecting the pieces. Designed to scale as the program grows.",
+    tags: ["AI", "Product", "TypeScript", "Supabase"],
+    github: "https://github.com/sarrahrenfro/ai-learning-lab",
+    linkLabel: "View on GitHub",
+  },
+  {
+    name: "HuskySync",
+    outcome: "A from-scratch Calendly equivalent built for university teams.",
+    description:
+      "Personal booking pages, team scheduling, Google Calendar sync, iCal support, and an admin dashboard — all built from the ground up in TypeScript with Supabase. The same scheduling infrastructure that powers the booking system on this site.",
+    tags: ["Product", "TypeScript", "Supabase", "Scheduling"],
+    github: "https://github.com/sarrahrenfro/teamhubsyncscaled",
+    linkLabel: "View on GitHub",
+  },
+  {
+    name: "MBAA Event Calendar",
+    outcome: "Governance and event tooling for Foster's MBA student association.",
+    description:
+      "TypeScript monorepo (pnpm workspaces) covering the full event and governance lifecycle for Foster MBAA. Includes a Supabase-backed voting module with anonymized ballots and row-level security policies that separate ballots from voter identity.",
+    tags: ["TypeScript", "Supabase", "Governance", "Monorepo"],
+    github: "https://github.com/sarrahrenfro/UW-MBAA-Calendar",
+    linkLabel: "View on GitHub",
+  },
+  {
+    name: "Mail Merge Tool",
+    outcome: "Rich-text mail merge with production-grade delivery.",
+    description:
+      "TipTap rich text editor, Supabase-backed recipient management, and Brevo for sending. Built in Next.js and TypeScript. Designed to replace clunky spreadsheet-based mail merge workflows with something that actually handles formatting and delivery reliably.",
+    tags: ["Next.js", "TypeScript", "Supabase", "Brevo"],
+    github: "https://github.com/sarrahrenfro/mail-merge",
+    linkLabel: "View on GitHub",
+  },
+  {
     name: "PowROI",
     outcome: "Helps skiers calculate whether a season pass actually pays off.",
     description:
-      "Built a web app from scratch that compares ski pass ROI across resorts based on your skiing habits. Deployed on Lovable. Currently translating V1 user feedback into a structured V2 feature roadmap with improved UX and expanded resort coverage.",
+      "Compares Ikon, Epic, Mountain Collective, and Indy passes across 50 resorts based on your skiing habits. Interactive Leaflet map, break-even charts, and sensitivity tables for trip planning. Currently translating V1 user feedback into a V2 roadmap with expanded resort coverage.",
     tags: ["Product", "Web App", "Live"],
     link: "https://powroi.lovable.app",
     linkLabel: "View Live App",
     screenshot: "/screenshots/powroi.png",
   },
   {
-    name: "Quizzler",
-    outcome: "A quiz app that went from idea to deployed in a weekend.",
+    name: "sarrahrenfro.com",
+    outcome: "This site — personal portfolio, writing hub, and booking system.",
     description:
-      "Built a FastAPI quiz application and deployed it on Railway. Then wrote publicly about the process: what broke, what I learned, and what I'd do differently. Designed to demonstrate that I can move from concept to shipped product without a team.",
-    tags: ["Engineering", "Python", "FastAPI"],
-    link: "https://github.com/sarrahrenfro",
+      "Next.js on Vercel with a custom Steel and Electric Blue design system. Includes a live Outlook calendar availability checker, a full booking flow with ICS calendar invites, and Substack RSS integration for the writing section.",
+    tags: ["Next.js", "Vercel", "TypeScript", "Design System"],
+    github: "https://github.com/sarenfro/sarrahrenfro-site",
+    linkLabel: "View on GitHub",
+  },
+];
+
+const supporting: Project[] = [
+  {
+    name: "calendar-api",
+    outcome: "Finds shared free time across team calendars.",
+    description:
+      "Node.js scheduling API that parses .ics files from Google, Apple, and Outlook to find overlapping availability. Handles recurring events, configurable working hours, and time zone normalization.",
+    tags: ["Node.js", "TypeScript", "iCal"],
+    github: "https://github.com/sarrahrenfro/calendar-api",
     linkLabel: "View on GitHub",
   },
   {
-    name: "LLM Evaluation Framework",
-    outcome: "A structured rubric for evaluating AI tools on real business tasks.",
+    name: "Wayfinders Retro",
+    outcome: "Anonymous retrospective feedback collector for teams.",
     description:
-      "Designed and executed a benchmark comparing ChatGPT, Claude, Gemini, and Copilot across five business use cases: strategy, financial modeling, executive communication, due diligence, and ambiguity handling. Produced scoring rubrics, a scorer's guide, and a master scorecard.",
-    tags: ["AI", "Research", "Product Strategy"],
+      "Node.js + Express app with a public submission form and exportable results. Deployed on Heroku. Built for teams that want honest retro feedback without attribution pressure.",
+    tags: ["Node.js", "Express", "Heroku"],
+    github: "https://github.com/sarrahrenfro/wayfinders-retro",
+    linkLabel: "View on GitHub",
   },
   {
-    name: "Sarrah's Sandbox",
-    outcome: "Making AI and technology accessible to non-traditional audiences.",
+    name: "Quizzler",
+    outcome: "FastAPI quiz app that loads questions from an Excel sheet.",
     description:
-      "A recurring publication covering AI tools, product thinking, and technology trends, written for people who weren't born into it. Published pieces include original frameworks, product teardowns, and reflections from inside an MBA program.",
-    tags: ["Writing", "AI", "Content Strategy"],
-    link: "https://sarrahsandbox.substack.com",
-    linkLabel: "Read on Substack",
+      "Python backend with a static HTML front-end. Built and deployed in a weekend, then written about publicly — designed to show that I can move from idea to shipped product without a team.",
+    tags: ["Python", "FastAPI", "Deployed"],
+    github: "https://github.com/sarrahrenfro/Quizzler",
+    linkLabel: "View on GitHub",
   },
   {
-    name: "TeamSyncHubScaled",
-    outcome: "",
-    description: "",
-    tags: [],
-    placeholder: true,
+    name: "ConfusionlessConfucius",
+    outcome: "Sandbox for testing RAG retrieval strategies and prompt variations.",
+    description:
+      "Experimental repo for exploring how different retrieval approaches and prompt structures affect LLM output quality. Used as a personal research environment for AI evaluation work.",
+    tags: ["AI", "RAG", "Research"],
+    github: "https://github.com/sarrahrenfro/ConfusionlessConfucious",
+    linkLabel: "View on GitHub",
   },
 ];
+
+function ProjectCard({ project, compact = false }: { project: Project; compact?: boolean }) {
+  return (
+    <div className="bg-cream border border-pebble rounded-2xl overflow-hidden">
+      {project.screenshot && (
+        <div className="relative w-full h-52">
+          <Image
+            src={project.screenshot}
+            alt={`${project.name} screenshot`}
+            fill
+            className="object-cover object-top"
+          />
+        </div>
+      )}
+      <div className={compact ? "p-6" : "p-8"}>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span key={tag} className="bg-light text-stone text-xs px-3 py-1 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h2 className={`font-display font-bold text-navy mb-2 ${compact ? "text-xl" : "text-2xl md:text-3xl"}`}>
+          {project.name}
+        </h2>
+        {project.outcome && (
+          <p className="text-terracotta font-medium text-sm mb-3">{project.outcome}</p>
+        )}
+        <p className="text-charcoal text-sm leading-relaxed mb-5">{project.description}</p>
+        <div className="flex flex-wrap gap-4">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-terracotta text-sm font-medium hover:gap-3 transition-all"
+            >
+              {project.linkLabel ?? "View Project"} <ExternalLink size={14} />
+            </a>
+          )}
+          {project.github && !project.link && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-terracotta text-sm font-medium hover:gap-3 transition-all"
+            >
+              {project.linkLabel ?? "View on GitHub"} <GithubIcon size={14} />
+            </a>
+          )}
+          {project.github && project.link && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-stone text-sm font-medium hover:text-navy transition-colors"
+            >
+              GitHub <GithubIcon size={14} />
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function WorkPage() {
   return (
@@ -81,85 +199,25 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* PROJECTS */}
+      {/* PRIMARY PROJECTS */}
       <section className="bg-light px-6 py-16">
         <div className="max-w-4xl mx-auto flex flex-col gap-8">
-          {projects.map((project) => {
-            if (project.placeholder) {
-              return (
-                <div
-                  key={project.name}
-                  className="bg-cream border border-pebble rounded-2xl p-8 opacity-60"
-                >
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-light text-stone text-xs px-3 py-1 rounded-full">
-                      Coming Soon
-                    </span>
-                  </div>
-                  <h2 className="font-display text-2xl font-bold text-navy mb-3">
-                    {project.name}
-                  </h2>
-                  <p className="text-stone text-sm">
-                    Project details coming soon.
-                  </p>
-                </div>
-              );
-            }
+          {projects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
+          ))}
+        </div>
+      </section>
 
-            return (
-              <div
-                key={project.name}
-                className="bg-cream border border-pebble rounded-2xl overflow-hidden"
-              >
-                {project.screenshot ? (
-                  <div className="relative w-full h-52">
-                    <Image
-                      src={project.screenshot}
-                      alt={`${project.name} screenshot`}
-                      fill
-                      className="object-cover object-top"
-                    />
-                  </div>
-                ) : null}
-                <div className="p-8">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="bg-light text-stone text-xs px-3 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-navy mb-2">
-                  {project.name}
-                </h2>
-                {project.outcome && (
-                  <p className="text-terracotta font-medium text-sm mb-4">
-                    {project.outcome}
-                  </p>
-                )}
-                {project.description && (
-                  <p className="text-charcoal text-sm leading-relaxed mb-6">
-                    {project.description}
-                  </p>
-                )}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-terracotta text-sm font-medium hover:gap-3 transition-all"
-                  >
-                    {project.linkLabel ?? "View Project"}{" "}
-                    <ExternalLink size={14} />
-                  </a>
-                )}
-                </div>
-              </div>
-            );
-          })}
+      {/* SUPPORTING WORK */}
+      <section className="bg-sand px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-display text-2xl font-bold text-navy mb-2">Supporting work</h2>
+          <p className="text-stone text-sm mb-10">Smaller builds, experiments, and infrastructure that didn&apos;t make the main list but show the range.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {supporting.map((project) => (
+              <ProjectCard key={project.name} project={project} compact />
+            ))}
+          </div>
         </div>
       </section>
 
