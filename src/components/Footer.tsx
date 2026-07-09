@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LinkedinIcon, GithubIcon } from "@/components/SocialIcons";
+import { Settings2 } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -34,6 +35,15 @@ export default function Footer() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <Link
+            href="/admin/login"
+            aria-label="Admin"
+            className="flex items-center gap-1.5 text-xs px-3 py-1 rounded-full border transition-opacity opacity-20 hover:opacity-60"
+            style={{ borderColor: "var(--border-subtle)", color: "var(--text-tertiary)" }}
+          >
+            <Settings2 size={11} />
+            admin
+          </Link>
           <a
             href="https://www.linkedin.com/in/sarrahrenfro"
             target="_blank"

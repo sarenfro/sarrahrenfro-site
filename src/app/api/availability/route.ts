@@ -2,6 +2,7 @@ import { type NextRequest } from "next/server";
 import ICAL from "ical.js";
 import { parseISO, getDay, isBefore } from "date-fns";
 import { fromZonedTime } from "date-fns-tz";
+import { getCalendarUrls } from "@/lib/calendarUrls";
 
 const PT = "America/Los_Angeles";
 const DAY_START_H = 9;
@@ -43,14 +44,12 @@ async function fetchCalendarBusy(icsUrl: string, dateStr: string): Promise<BusyR
 }
 
 async function fetchBusyRanges(dateStr: string): Promise<BusyRange[]> {
-  const urls = [
-    process.env.OUTLOOK_ICS_URL,
-    process.env.GOOGLE_ICS_URL,
-  ].filter(Boolean) as string[];
+  const calendars = await getCalendarUrls();
+  if (calendars.length === 0) return [];
 
-  if (urls.length === 0) return [];
-
-  const results = await Promise.all(urls.map((url) => fetchCalendarBusy(url, dateStr)));
+  const results = await Promise.all(
+    calendars.map(({ url }) => fetchCalendarBusy(url, dateStr))
+  );
   return results.flat();
 }
 
