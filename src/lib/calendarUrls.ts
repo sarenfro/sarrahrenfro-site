@@ -65,11 +65,23 @@ export async function getCalendarUrls(): Promise<CalendarUrl[]> {
   const data = await redis.get<StoredEntry[]>(REDIS_KEY);
   if (!data || !Array.isArray(data) || data.length === 0) return envFallback();
 
-  return data.map((entry) => ({
-    id: entry.id,
-    label: entry.label,
-    url: decrypt(entry.encryptedUrl),
-  }));
+  // Old plaintext format had a `url` field instead of `encryptedUrl` — clear and fall back.
+  const stale = data.some((e) => !("encryptedUrl" in e));
+  if (stale) {
+    await redis.del(REDIS_KEY);
+    return envFallback();
+  }
+
+  try {
+    return data.map((entry) => ({
+      id: entry.id,
+      label: entry.label,
+      url: decrypt(entry.encryptedUrl),
+    }));
+  } catch {
+    await redis.del(REDIS_KEY);
+    return envFallback();
+  }
 }
 
 export async function setCalendarUrls(urls: CalendarUrl[]): Promise<void> {
